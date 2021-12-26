@@ -142,7 +142,6 @@ class DiGraph(GraphInterface):
 
     def getNode(self, node_id: int) -> Node:
         """
-
         :param node_id:
         :return: the node with the node_id
         """
