@@ -33,7 +33,7 @@ In the class can find the main variables and their implementation:
 
 
 ## __DiGraph Class:__
-This class implements the interface GraphAlgoInterface.\
+This class implements the interface GraphInterface.\
 This class representing  a directional weight graph. Can see the implementation of the graph by using dictionary.\
 That is, all the vertices in the graph are seen under a data structure of a dictionary, and each vertex has edges that go in and out of that vertex (these data can also be seen in a dictionary).In the class can find the functions and their implementation:
 
@@ -53,33 +53,29 @@ That is, all the vertices in the graph are seen under a data structure of a dict
 
 
 
-__More private functions:__
 
+###__More private functions:__
 **_getNode(int):_** Method that get the node ID in the dictionary of nodes.
 
 
 
 
-## __DWGraph_Algo Class:__
-This class implements the interface DirectedWeightedGraphAlgorithm.\
-The class represent an implementation of a Directed (positive) Weighted Graph Theory Algorithms include: colne (copy), init (graph), isConnected (strongly),  double shortestPathDist, list shortestPath, node of center, list of TSP, load a Json file, save a Json file.\
-The implementation according to the data structures of Hash map (the value of the Hash map is based on the same data structure).
+## __GraphAlgo Class:__
+This class implements the interface GraphAlgoInterface.\
+The class represent an implementation of a Directed (positive) Weighted Graph Theory Algorithms include: init (graph), shortestPath (by the Dijkstra Algorithm), node of center, list of TSP, load from Json file, save from Json file, plot of the grapg.\
+In each implementation of an entire graph in this class, it prepares the data of a DiGraph class on which the algorithms work on.
+In the class can find the functions and their implementation:
 
 
-| __Main Method__ | __Description__ |
-| :---------------- | :---------------- |
-| DWGraph_Algo() | Default constructor |
-| DWGraph_Algo(DirectedWeightedGraph| Constructor |
-| init(DirectedWeightedGraph g) | init the graph on which this set of algorithms operates on |
-| getGraph() | underlying graph of which specific class works|
-| copy() | Computes a deep copy of this weighted graph |
-| isConnected() | true if there is a valid path from each node to each other node |
-| shortestPathDist(int src, int dest) | representing the shortest distance between first node(source) and second node (destination), us the Dijkstra algorithm (return double of the distance) |
-| shortestPath(int src, int dest) | representing the shortest distance between first node(source) and second node (destination), us the Dijkstra algorithm (return list of the nodes)|
-| center() | finds the NodeData which minimizes the max distance to all the other nodes |
-| tsp(List<NodeData>) | computes a list of consecutive nodes which go over all the nodes in cities |
-| save(String file) | saves the json file that is a directed weighted graph to the given |
-| load(String file) | this function implement the load of a graph to this graph algorithm |
+| __Main Method__ | __Description__ | __Output__|
+| :---------------- | :---------------- | :-------------|
+| get_praph() | The directed graph on which the algorithm works on | GraphInterface |
+| load_from_json(str) | Loads a graph from a json file | Bool |
+| save_to_json(str) | Saves the graph in JSON format to a file | Bool | 
+| shortest_path(int, int) | The shortest path from node id1 to node id2 using Dijkstra's Algorithm | Float, List |
+| TSP(List[int]) | Finds the shortest path that visits all the nodes in the list | List[int], Float |
+| centerPoint() | Finds the node that has the shortest distance to it's farthest node | Integer, Float |
+| plot_graph() | Plots the graph. | None|
 
   
 __More private functions:__
