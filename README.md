@@ -54,7 +54,7 @@ That is, all the vertices in the graph are seen under a data structure of a dict
 
 
 
-###__More private functions:__
+###__More private functions:__\
 **_getNode(int):_** Method that get the node ID in the dictionary of nodes.
 
 
