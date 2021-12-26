@@ -80,20 +80,13 @@ In the class can find the functions and their implementation:
   
 __More private functions:__
   
-•	**_`algorithm_of_Dijkstra:`_** The function receive a NodeData. The function based on the Dijkstra's algorithm.
-    Solves the problem of finding the easiest route from point in graph to destination in weighted graph. It is possible to find using       this algorithm, at this time, the fast paths to all the points in the graph. The algorithm calculates the weights of the nodes with     the desired edges each time and compares them. According to the algorithm we get the path with the lowest weight.\
-    Link: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm \
-    _Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges._\
-Returns an array of doubles that representing the shortest path to each node (the indexs on the array representing the nodes ID).\
-•	**_`toString():`_** The function receive a graph and by the library in java represent the graph as a string.\
-•	**_`reset_weight():`_** This function re – update the weight of the all nodes in the graph.\
-• **_`findTheLongestPathInDijkstra(NodeDate):`_** This function receive a NodeData (vertex). Its realization is carried out according to the      result obtained from the Dijksrta algorithm, depending on the result we will go over the array and choose the longest path from all      the short ones and return the destination (node) that occurred with the longest path. This function helps to find the center of the      graph.\
-•	**_`upSideDownGraph():`_** This function creates a new graph that will be the graph in the opposite direction of the existing graph.\
-• **_`BFS(DirectedWeightedGraph, NodeData):`_** This function checks if there is a path that passes through all the vertices.\
-• **_`BFS_isConnected(DirectedWeightedGraph graph, NodeData N):`_** This function checks whether the graph is connected ,uses the BFS           algorithm.\
-__Link to the algorithm BFS: https://en.wikipedia.org/wiki/Breadth-first_search.__ \
-• **_`changeTags():`_** This function re-update all the tags of the nodes in the graph to be -1 (NOT VISITED).\
-• **_`graphJsonDeserializer implements JsonDeserializer<DWGraph>:`_** This class implements the Json Deserializer to allow you to load the Jason file. 
+•	**_`algorithm_of_Dijkstra:`_** The function is a helper function for the implementation of the TSP algorithm.\
+The function receive a Node, represent the source node. Based on the Dijkstra's algorithm.\
+Solves the problem of finding the easiest path from point in graph to destination in weighted graph. It is possible to find using       this algorithm, at this time, the fast paths to all the points in the graph. The algorithm calculates the weights of the nodes with     the desired edges each time and compares them. According to the algorithm we get the path with the lowest weight.\
+Link: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm \
+_Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges._\
+
+
 
   
 ## GUI PACKAGE
