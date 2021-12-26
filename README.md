@@ -38,7 +38,7 @@ This class representing  a directional weight graph. Can see the implementation 
 That is, all the vertices in the graph are seen under a data structure of a dictionary, and each vertex has edges that go in and out of that vertex (these data can also be seen in a dictionary).In the class can find the functions and their implementation:
 
 | __Main Method__ | __Description__ | __Output__ |
-| :---------------- | :---------------- |
+| :---------------- | :---------------- | :---------------|
 | v_size() | Number of vertices in this graph | Integer |
 | e_size() | Number of edges in this graph | Integer |
 | get_all_v() | A dictionary of all the nodes in the Graph | Dictionary |
