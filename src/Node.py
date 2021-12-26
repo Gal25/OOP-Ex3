@@ -1,14 +1,13 @@
-import math
+import sys
 
 
 class Node:
 
-    def __init__(self, key : int , location : tuple= None, tag: int= 0, **kwargs):
+    def __init__(self, key : int , location : tuple= None, tag: int= 0, weight: float = sys.maxsize ):
         self.key = key
         self.location = location
         self.tag = tag
-        self.weight = math.inf
-        self.info= ""
+        self.weight = weight
         self.e_out = 0
         self.e_in = 0
 
@@ -39,14 +38,8 @@ class Node:
     def getWeight(self):
         return self.weight
 
-    def setWeight(self, w: float):
+    def setWeight(self, w: int):
         self.weight = w
-
-    def getinfo(self):
-        return self.info
-
-    def setinfo(self, info: str):
-        self.info = info
 
     def getLocation(self):
         return self.location
