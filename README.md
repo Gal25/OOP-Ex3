@@ -9,77 +9,54 @@ https://github.com/Gal25
 ```
 
 This project is an assignment in an Object Oriented Programming course at Ariel University.\
-In the project we were asked to design and implement data structures and algorithms of graphs (directed and weighted). 
-The project consists of two parts, first the implementation of a weighted and directed graph and the algorithms operate on the graph. The second part is design the graph and use the algorithms we implemented in the first part and make the graph visual by using JAVA SWING and bringing JFrame and JPanel libraries.\
-The project include five different interfaces and seven classes. The interfaces are under the API of the graph which include in the content of all the functions for the implementation of the graph. The  five classes the implementation of the interfaces themselves, moreover there is an implementation of tests for each function in the graph (show under the package ‘tests’). Two additional classes involve the implementation of the GUI.
+In the project we were asked to design and implement data structures and algorithms of graphs (directed and weighted) in python. 
+The project consists of three parts, first the implementation of a weighted and directed graph with the help of implementation of different interfaces. \
+The second part is design the graph and use the algorithms we implemented in the first part and make the graph visual by using of PYGAME library.\
+In the third part we will perform a comparison test of the running times. The comparison will be made between the data we received in the previous assignment in JAVA, can be seen at the following link: _https://github.com/Gal25/OOP-Ex2_, and the data we received in this project in Python.\
+A detail of the third part is documented in the wiki.\
+The project include two different interfaces and five classes. The interfaces are under the SRC PACKAGE which include in the content of all the functions for the implementation of the graph. Moreover there is an implementation of tests for each function in the graph (show under the package ‘tests’).
 
 
 
-## API PACKAGE:
-### __NodeData_Class:__
-This class implements the interface NodeData.\
+## Directed weighted graph in Python:
+### __Node_Class:__
 This simple class representing a node (vertex) on a directed weighted graph.\
 In the class can find the main variables and their implementation:
 
 •	Key -  A key that is used to as each node’s ID.\
-•	Location -  An object that represent the location of the node by using the GeoLocation class.\
-•	Wieght – A variable that get the weight of the node, there is an option to update the weight of the vertex,helps in calculating          functions in the DWGraph_Algo.\
-•	Info –  A variable that get the information of the node by String, there is an option to update the Info of the vertex, helps in          calculating functions in the DWGraph_Algo.\
-•	Tag- A variable that used by default: (-1) if the node is not visited (helps in calculating functions in the DWGraph_Algo).
+•	Location -  An object that represent the location of the node.\
+•	Wieght – A variable that get the weight of the node, there is an option to update the weight of the vertex,helps in calculating functions in DiGraph and GraphAlgo.\
+•	Info –  A variable that get the information of the node by String, there is an option to update the Info of the vertex, helps in calculating functions in DiGraph and GraphAlgo.\
+•	Tag- A variable that used by default.\
+• E_out - A variable that get the amount of the nodes that connected to (into) other node.\
+• E_in - A variable that get the amount of the nodes that connected from other node.
 
 
-## __GeoLocation_Class:__
-This class implements the interface GeaoLocation.\
-This simple class representing a the location of node (vertex) on a directed weighted graph.\
-Can find that the location determined by values of X, Y, Z.\
-In the class can find the implementation of:
+## __DiGraph Class:__
+This class implements the interface GraphAlgoInterface.\
+This class representing  a directional weight graph. Can see the implementation of the graph by using dictionary.\
+That is, all the vertices in the graph are seen under a data structure of a dictionary, and each vertex has edges that go in and out of that vertex (these data can also be seen in a dictionary).In the class can find the functions and their implementation:
 
-•	X  - One of the value that determine the location of the node.\
-•	Y -  One of the value that determine the location of the nide.\
-•	Z - One of the value that determine the location of the nide.\
-•	Distance – A variable that get the distance between two nodes.
+| __Main Method__ | __Description__ | __Output__ |
+| :---------------- | :---------------- |
+| v_size() | Number of vertices in this graph | Integer |
+| e_size() | Number of edges in this graph | Integer |
+| get_all_v() | A dictionary of all the nodes in the Graph | Dictionary |
+| all_in_edges_of_node(int) | A dictionary of all the nodes connected to (into) node_id | Dictionary |
+| all_out_edges_of_node(int) | A dictionary of all the nodes connected from node_id | Dictionary |
+| get_mc() | Current version of this graph | Dictionary |
+| add_edge(int, int, float) | Adds an edge to the graph | Bool |
+| add_node(int, pos: tuple) | Adds a node to the graph | Bool |
+| remove_node(int) | Removes a node from the graph | Bool |
+| remove_edge(int, int) | Removes an edge from the graph | Bool |
 
-
-## __EdgeData_Class:__
-This class implements the interface EdgeData.\
-This simple class representing an edge in a directed weighted graph.\
-In the class can find the main variables and their implementation:
-
-•	Source – A variable that points on the node ID, determine the point start of the edge.\
-•	Destination – A variable that points on the node ID, determine the point end of the edge.\
-•	Weight – A variable that determine the weight of the edge, can not be changed.\
-•	Info – A variable that get the information on the edge by String, there is an option to update the Info of the vertex, helps in         calculating functions in the DWGraph_Algo.\
-•	Tag- A variable that represent a temporal data (helps in calculating functions in the DWGraph_Algo).
-
-
-
-## __DWGraph Class:__
-This class implements the interface DirectedWeightedGraph.\
-This class representing  a directional weight graph. Implementation of the graph according to the data structures of  Hash map. In the class can find the functions and their implementation:
-
-| __Main Method__ | __Description__ | __Complexity__|
-| :---------------- | :---------------- | :--------------: |
-| public DWGraph() | default constructor |  |
-| DWGraph(DirectedWeightedGraph) | deep copy constructor (of graph) | O(1) |
-| getNode(int key) | Returns the node_data by the node_id | O(1) |
-| getEdge(int src, int dest) | data of the edge (src,dest) | O(1) |
-| addNode(NodeData) | adds a new node to the graph with the given node_data| O(1) |
-| connect(int src, int dest, double) | Connects an edge with weight w between node src to node dest | O(1)|
-| nodeIter() | returns an Iterator for the collection representing all the nodes in the graph | O(1) |
-| edgeIter() | eturns an Iterator for all the edges in this graph | O(k) V.degree=k |
-| edgeIter(int node_id) | returns an Iterator for edges getting out of the given node| O(1) |
-| removeNode(int key) | Deletes the node (with the given ID) from the graph and removes all edges which starts or ends at this node| O(k), V.degree=k |
-| removeEdge(int src, int dest) | Deletes the edge from the graph | O(1) |
-| nodeSize() | number of vertices (nodes) in the graph | O(1) |
-| edgeSize() | number of edges (assume directional graph) | O(1) |
-| getMC() | Mode Count - for testing changes in the graph | O(1) |
 
 
 
 __More private functions:__
 
-**_edgesCopy(DirectedWeightedGraph g, HashMap edges):_** Method that get a new data structure and duplicate this HashMap of edges.\
-**_nodesCopy(DirectedWeightedGraph g, HashMap nodes):_** Method that get a new data structure and duplicate this HashMap of nodes.
+**_getNode(int):_** Method that get the node ID in the dictionary of nodes.
+
 
 
 
