@@ -1,4 +1,3 @@
-
 from unittest import TestCase
 
 from src.DiGraph import DiGraph
@@ -56,6 +55,16 @@ class GraphAlgo_test(TestCase):
         """
             Check for the centers of the graphs given in the json files
         """
+        g = DiGraph()  # creates an empty undirected graph
+        for n in range(5):
+            g.add_node(n)
+        g.add_edge(0, 1, 1)
+        g.add_edge(1, 2, 5)
+        g.add_edge(2, 3, 1.1)
+        gAlgo0 = GraphAlgo(g)
+        self.assertEqual((-1, float('inf')), gAlgo0.centerPoint())
+
+
         gAlgo1 = GraphAlgo()
         gAlgo1.load_from_json("../data/A0.json")
         self.assertEqual((7, 6.806805834715163), gAlgo1.centerPoint())
@@ -72,6 +81,8 @@ class GraphAlgo_test(TestCase):
         gAlgo4.load_from_json("../data/A3.json")
         self.assertEqual((2, 8.182236568942237), gAlgo4.centerPoint())
 
+
+
     def test_tsp(self):
         """
             Test for the tsp
@@ -87,4 +98,4 @@ class GraphAlgo_test(TestCase):
 
         l = [0, 1, 2]
 
-        # self.assertEqual("(4, [0, 1, 3])", str(self.g_algo.TSP(l)))
+        self.assertEqual("([0, 1, 2], 3)", str(self.g_algo.TSP(l)))
