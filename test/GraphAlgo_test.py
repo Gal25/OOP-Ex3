@@ -5,6 +5,7 @@ from src.GraphAlgo import GraphAlgo
 
 
 class GraphAlgo_test(TestCase):
+
     def setUp(self) -> None:
         self.graph = None
         self.g_algo = GraphAlgo()
@@ -17,7 +18,7 @@ class GraphAlgo_test(TestCase):
         print(self.g_algo.get_graph())
         self.assertTrue(self.g_algo.load_from_json('../data/A5.json'))
         print(self.g_algo.get_graph())
-        self.assertTrue(self.g_algo.load_from_json("../data/T0.json"))
+        self.assertTrue(self.g_algo.load_from_json("../data/A1.json"))
         print(self.g_algo.get_graph())
         self.assertTrue(self.g_algo.load_from_json("../data/T0.json"))
         print(self.g_algo.get_graph())
@@ -55,7 +56,7 @@ class GraphAlgo_test(TestCase):
         """
             Check for the centers of the graphs given in the json files
         """
-        g = DiGraph()  # creates an empty undirected graph
+        g = DiGraph()  # creates a undirected graph
         for n in range(5):
             g.add_node(n)
         g.add_edge(0, 1, 1)
