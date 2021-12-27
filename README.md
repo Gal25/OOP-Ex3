@@ -83,7 +83,7 @@ __`More private functions:`__
 **_algorithm_of_Dijkstra:_** The function is a helper function for the implementation of the TSP algorithm.\
 The function receive a Node, represent the source node. Based on the Dijkstra's algorithm.\
 Solves the problem of finding the easiest path from point in graph to destination in weighted graph. It is possible to find using       this algorithm, at this time, the fast paths to all the points in the graph. The algorithm calculates the weights of the nodes with     the desired edges each time and compares them. According to the algorithm we get the path with the lowest weight.\
-_Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges._
+_Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges._\
 **_class Priority:_** This class is implemented to help to the priority queue in the Dijksrta algorithm. 
 
 
