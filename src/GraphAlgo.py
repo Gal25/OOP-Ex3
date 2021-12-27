@@ -1,19 +1,17 @@
-import heapq
 import json
 import math
 import random
+import sys
 from heapq import heappop, heappush
-from queue import PriorityQueue
+import queue
 from typing import List
 
-from src import Node
 from src.GraphAlgoInterface import GraphAlgoInterface
 from src.DiGraph import DiGraph
 from src.GraphInterface import GraphInterface
 import matplotlib.pyplot as plt
 
-
-
+from src.Node import Node
 
 
 class GraphAlgo(GraphAlgoInterface):
@@ -21,14 +19,11 @@ class GraphAlgo(GraphAlgoInterface):
     def __init__(self, graph: DiGraph = None):
         self.graph = graph
 
-
-
     def get_graph(self) -> GraphInterface:
         """
         :return: the directed graph on which the algorithm works on.
         """
         return self.graph
-
 
     def load_from_json(self, file_name: str) -> bool:
         """
@@ -105,210 +100,166 @@ class GraphAlgo(GraphAlgoInterface):
             https://en.wikipedia.org/wiki/Dijkstra's_algorithm
             """
             queue = []  # this heapq will have 2 values in index: (distance, node)
-            all_nodes = self.graph.get_all_v().keys()
 
             the_list = {id1: [id1]}
             visited = {}
             value = {}
 
             # if the vertex does not exists in the list of nodes in current graph
-            if id1 not in all_nodes:
+            if id1 not in self.graph.get_all_v().keys():
                 return float('inf'), []
 
             heappush(queue, (0, id1))
             while queue:
                 (dist, ver) = heappop(queue)
                 value[ver] = dist
+                if ver == id2:
+                    break
 
                 for key, edge in self.graph.all_out_edges_of_node(ver).items():
                     curr = value[ver] + edge
-                    if key not in visited:
+                    if key not in visited or curr < visited[key]:
                         visited[key] = curr
                         heappush(queue, (curr, key))
                         if ver not in the_list:
                             the_list[ver] = [ver]
                         the_list[key] = the_list[ver] + [key]
 
-                if ver in value:
-                    continue  # already searched this node.
-                if ver == id2:
-                    break
-
             visited[id1] = 0
-            if id2 in value and id2 in the_list:
-                return value[id2], the_list[id2]
-            return float('inf'), []
+            if id2 not in value and id2 not in the_list:
+                return float('inf'), []
 
-    def dijkstra(self, src : Node):
+            return value[id2], the_list[id2]
 
-        for i in range(len(self.graph.nodes)):
-            self.graph.nodes[i].setWeight(math.inf)
+    def algorithm_of_Dijkstra(self, src: Node):
+        """
+           This function representing the Dijkstra's algorithm.
+           Solves the problem of finding the easiest route from point in graph to destination in weighted graph.
+           It is possible to find using this algorithm, at this time, the fast paths to all the points in the graph.
+           The algorithm calculates the weights of the nodes with the desired edges each time and compares them.
+           According to the algorithm we get the path with the lowest weight, we used it in TSP function
+           Link: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+           Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges.
+            :param src: src the source node
+        """
+        visited = {}
+        q = queue.PriorityQueue()
+        for node in self.get_graph().get_all_v().values():
+            node.setWeight(sys.maxsize)
+            visited[node.key] = False
 
-        src.setTag(0)
         src.setWeight(0)
-        # distances = {i: math.inf for i in self.graph.nodes.keys()}
-        previous_node = {src: -1}
-        q = []
-        heapq.heappush(q, src)
-        while q:
-            node_src = q[0]
-            # node_src = self.graph.nodes[v]
-            if node_src.getTag() != 1:
-                for u, w in self.graph.all_out_edges_of_node(node_src.getkey()).items():
-                    node_dest = self.graph.nodes[u]
-                    if node_dest.getWeight() > node_src.getWeight() + w:
-                        node_dest.setWeight(node_src.getWeight() + w)
-                        previous_node[u] = node_src
-                        q.append(node_dest)
-                        # heapq.heappush(q, node_dest)
-                src.setTag(1)
+        q.put(src)
 
-
-
-    # def TSP(self, node_lst: List[int]) -> (List[int], float):
-    #     """
-    #     Finds the shortest path that visits all the nodes in the list
-    #     :param node_lst: A list of nodes id's
-    #     :return: A list of the nodes id's in the path, and the overall distance
-    #     """
-    #     current_temp = []
-    #     cities_list = []
-    #     min_path = math.inf
-    #     cities_list_temp = []
-    #     min_path_temp = 0
-    #     for i in range(len(node_lst)):
-    #         first_time = False
-    #         cities_list_temp.clear()
-    #         cities_temp = node_lst.copy()
-    #         min_path_temp = 0
-    #         curr_node_index = i
-    #         location = i
-    #         while len(cities_temp) > 1:
-    #             key = cities_temp[location]
-    #             cities_temp.remove(key)
-    #             self.dijkstra(self.graph.nodes[key])
-    #             min_value = math.inf
-    #             for j in range(len(cities_temp)):
-    #                 x = self.graph.nodes[cities_temp[j]].weight
-    #                 if min_value > x:
-    #                     min_value = self.graph.nodes[cities_temp[j]].weight
-    #                     curr_node_index = cities_temp[j]
-    #                     location = j
-    #             if min_value == math.inf:
-    #                 break
-    #             min_path_temp += min_value
-    #             current_temp = self.shortest_path(key, curr_node_index)[1]
-    #
-    #             if first_time:
-    #                 current_temp.pop(0)
-    #             first_time = True
-    #             cities_list_temp.extend(current_temp)
-    #
-    #         if min_path > min_path_temp:
-    #             cities_list.clear()
-    #             cities_list = cities_list_temp.copy()
-    #             min_path = min_path_temp
-    #
-    #     return cities_list, min_path
-
-    # def TSP(self, node_lst: List[int]) -> (List[int], float):
-    #     TSP = List[int]
-    #     tempTSP = List[int]
-    #     best_w = math.inf
-    #     cities = List[int]
-    #     while cities:
-    #         curr = self.graph.nodes[cities]
-    #         tempTSP.clear()
-    #         tempTSP = pathCheker(tempTSP, node_lst,curr)
-    #         temp_w = self.w_cheker(tempTSP)
-    #         if  temp_w < best_w:
-    #             best_w = temp_w
-    #             TSP.clear()
-    #             TSP.extend(tempTSP)
-    #
-    #     return TSP
-    #
-    #
-    # def w_cheker(self ,tempTSP : List):
-    #     if len(tempTSP) == 0:
-    #         return math.inf
-    #     sum= 0
-    #     for i in range(len(self.graph.nodes)):
-    #         sum += self.graph.edges[i].w
-    #     return sum
-    #
-    # def pathCheker(self ,tempTSP:List, node_lst: List, curr: Node):
-    #     if len(tempTSP) == len(node_lst):
-    #         return tempTSP
-    #
-    #     while range(len(self.graph.edges)) :
+        while q.qsize() != 0:
+            current = q.get()
+            if visited.get(current.key) is False:
+                for id, w in self.graph.all_out_edges_of_node(current.key).items():
+                    node = self.graph.nodes.get(id)
+                    dist = w + current.weight
+                    if dist < node.weight:
+                        node.setWeight(dist)
+                        q.put(Priority(node.weight, node.key))
+            visited[current.key] = True
 
     def TSP(self, node_lst: List[int]) -> (List[int], float):
+        """
+            Finds the shortest path that visits all the nodes in the list
+            we used with dijkstra algorithm
+            :param node_lst: A list of nodes id's
+            :return: A list of the nodes id's in the path, and the overall distance
+        """
         TSP = []
+        node_lst_copy = []
+        minDist = sys.maxsize
         TSP_temp = []
-        # curr = node_lst.__getitem__(0)
         minNode = 0
-        minDist = math.inf
-        for i in range(len(node_lst)):
-            if len(node_lst) == 0:
-                break
-            first_time = False
-            TSP_temp.clear()
-            temp_copy = node_lst.copy()
-            curr = temp_copy[i]
-            loc = i
-            while len(temp_copy) > 1:
-                min_value = math.inf
-                key = temp_copy[loc]
-                temp_copy.remove(key)
+        stop = True
 
-                for j in range(len(temp_copy)):
-                    if min_value > self.shortest_path(key, curr)[0]:
-                        min_value = self.shortest_path(key, curr)[0]
-                        curr = temp_copy[j]
-                        loc = j
+        for node in range(len(node_lst)):
+            node_lst_copy.extend(node_lst)
+            curr = node_lst_copy[node]
+            pos = node
+            new = True
+            while len(node_lst_copy) > 1:
 
-                minNode += min_value
-                current_path = self.shortest_path(key, curr)[1]
-                if first_time:
-                    current_path.pop(0)
-                first_time = True
-                TSP_temp.extend(current_path)
-            if minDist > minNode:
-                TSP.clear()
-                TSP = TSP_temp.copy()
-                minDist = minNode
+                minVal = sys.maxsize
+                key = node_lst_copy[pos]
+                node_lst_copy.remove(key)
+                self.algorithm_of_Dijkstra(self.graph.get_all_v()[key])
 
-        return TSP , minDist
+                #find the minimum value of the path's weight using with dijkstra algorithm
+                for copy in range(len(node_lst_copy)):
+                    temp = self.graph.get_all_v()[node_lst_copy[copy]].getWeight()
+                    if minVal > temp:
+                        minVal = temp
+                        curr = node_lst_copy[copy]
+                        pos = copy
+
+                path = self.shortest_path(key, curr)[1] #take the shortest path
+
+                #put just one node in the path's list
+                if not new:
+                    path.pop(0)
+                new = False
+
+                if minVal == sys.maxsize:
+                    stop = False
+                    break
+
+                #add all the min
+                minNode += minVal
+                TSP_temp.extend(path) #put the TSP path
+
+            if stop:
+
+                if minDist > minNode:
+                    minDist = minNode
+                    TSP.extend(TSP_temp)
+
+        return TSP, minDist
 
     def centerPoint(self) -> (int, float):
         """
         Finds the node that has the shortest distance to it's farthest node.
         :return: The nodes id, min-maximum distance
         """
-        center_path = math.inf
+
+        center_path = sys.maxsize
         center = None
+
         for i in range(self.graph.sizeNodes):
-            temp = 0
-            for j in range(self.graph.sizeNodes):
-                path = self.shortest_path(i, j)[0]
-                if temp < path:
-                    temp = path
+            temp = self.findTheLongestPath(i)
+            if temp == float('inf'):
+                return -1 , float('inf')
             if temp < center_path:
                 center_path = temp
                 center = self.graph.get_all_v()[i]
 
         return center.getkey(), center_path
 
+    def findTheLongestPath(self, id1) -> float:
+        temp = 0
+        for j in range(self.graph.sizeNodes):
+            path = self.shortest_path(id1, j)[0]
+
+            if path == math.inf:
+                return float('inf')
+            if temp < path:
+                temp = path
+
+        return temp
+
     def plot_graph(self) -> None:
             """
             Plots the graph.
             If the nodes have a position, the nodes will be placed there.
             Otherwise, they will be placed in a random but elegant manner.
-            we used with the implement in the Amichai's tirgul
+            we helps with the implement in the Amichai's tirgul
             @return: None
             """
             for v in self.graph.get_all_v().values():
+
                 if v.getLocation() is None:
                     x = random.uniform(0, 100)
                     y = random.uniform(0, 100)
@@ -330,4 +281,15 @@ class GraphAlgo(GraphAlgoInterface):
 
             plt.show()
 
+
+
+class Priority:
+    #This class aims to put in the queue the vertices in relation to their weight
+
+    def __init__(self, weight, key):
+        self.weight = weight
+        self.key = key
+
+    def __lt__(self, other):
+        return self.weight < other.weight
 
