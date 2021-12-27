@@ -92,23 +92,19 @@ _Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges._
 ## __More Classes:__
 **_main.py:_**  This is a class given in advance by the team, assists in checking the algorithms and coordinating the results.\
 **_GUI.py:_** This class implements graphical implementation of all the algorithms from the first part using PYGAME.\
-The class contain the functions:
+The class contain the functions:\
 **scale(data, min_screen, max_screen, min_data, max_data):** The function get the scaled data with proportions min_data, max_data
- relative to min and max screen dimensions.
-**Setminmax():** This function......
+ relative to min and max screen dimensions.\
+**Setminmax():** This function......\
 **my_scale(data, x, y):** This function....
 
   
 ## _How to run a Graph:_
-By the Ex2 class functions and a jar file, can run the Graph.
-  
-__Running by the commend line__:\
-  At first, place the files where we know its location on the computer. The desired files are: one of the JSON files (no matter which one) and the JAR file that we created specifically for the Ex2 main class.\
-Example of registering : 
-  ```
-  c:\'name'\'name'\'name'>java -jar Ex2.jar G1.json
-  ```
- At second, inside the window that opens, by select the function load it brings the option to select any JSON file from your comuter, and then do any function that you want.
+There some steps, first need to open a project in a Python work place and implement a main class.\
+second, run a code that have the use of the function of a simple grapg.\
+For example:\
+
+
   
   
  ```
