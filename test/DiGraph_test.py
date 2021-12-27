@@ -20,13 +20,11 @@ class DiGraph_test(TestCase):
 
     def test_v_size(self):
         self.assertEqual(5, self.graph.v_size())
-        # add new node
         self.assertTrue(self.graph.add_node(6))
         self.assertEqual(6, self.graph.v_size())
 
     def test_e_size(self):
         self.assertEqual(7, self.graph.e_size())
-        # add new edge
         self.assertTrue(self.graph.add_edge(4, 3, 1))
         self.assertEqual(8, self.graph.e_size())
 
@@ -56,15 +54,14 @@ class DiGraph_test(TestCase):
         self.assertEqual(8, self.graph.e_size())
         self.assertEqual(13, self.graph.get_mc())
 
-        self.assertFalse(self.graph.add_edge(0, 1, 1)) #already exists in the graph
+        self.assertFalse(self.graph.add_edge(0, 1, 1))
 
-        self.assertFalse(self.graph.add_edge(0, 10, 1)) #not exists in the graph
+        self.assertFalse(self.graph.add_edge(0, 10, 1))
         self.assertEqual(8, self.graph.e_size())
         self.assertEqual(13, self.graph.get_mc())
 
     def test_add_node(self):
         self.assertEqual(5, self.graph.v_size())
-        # add new node
         self.assertTrue(self.graph.add_node(5))
         self.assertEqual(6, self.graph.v_size())
         self.assertEqual(13, self.graph.get_mc())
@@ -83,7 +80,7 @@ class DiGraph_test(TestCase):
         self.assertTrue(self.graph.remove_edge(0, 2))
         self.assertEqual(6, self.graph.e_size())
         self.assertEqual(13, self.graph.get_mc())
-        self.assertFalse(self.graph.remove_edge(1, 2)) # does not exists in the graph
+        self.assertFalse(self.graph.remove_edge(1, 2))
         self.assertEqual(6, self.graph.e_size())
         self.assertEqual(13, self.graph.get_mc())
 
