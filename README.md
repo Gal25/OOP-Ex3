@@ -134,7 +134,7 @@ OUTPUT:
 ```
 ```
 THE GRAPH:
-(By the implementation of the function for drawing the graph, the location of the
+By the implementation of the function for drawing the graph, the location of the
 vertices at the graph will be run randomly at runtime.
 So each run looks like a different graph (only in terms of the location).
 
