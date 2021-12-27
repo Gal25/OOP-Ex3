@@ -91,18 +91,60 @@ _Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges._
 
 ## __More Classes:__
 **_main.py:_**  This is a class given in advance by the team, assists in checking the algorithms and coordinating the results.\
-**_GUI.py:_** This class implements graphical implementation of all the algorithms from the first part using PYGAME.\
-The class contain the functions:\
-**scale(data, min_screen, max_screen, min_data, max_data):** The function get the scaled data with proportions min_data, max_data
- relative to min and max screen dimensions.\
-**Setminmax():** This function......\
-**my_scale(data, x, y):** This function....
 
   
+  
 ## _How to run a Graph:_
-There some steps, first need to open a project in a Python work place and implement a main class.\
-second, run a code that have the use of the function of a simple grapg.\
-For example:\
+The steps:
+* Open a new project.\
+* Copy the all files of code from the **CODE** button.\
+* Open a main class.\
+* Run a code that have the use of the function of a simple grapg.\
+For example:
+
+```
+INPUT:
+if __name__ == '__main__':
+
+    g = DiGraph()
+    
+    for n in range(5):
+        g.add_node(n)
+        
+    g.add_edge(0, 1, 1)
+    g.add_edge(0, 4, 5)
+    g.add_edge(1, 0, 1.1)
+    g.add_edge(1, 2, 1.3)
+    g.add_edge(1, 3, 1.9)
+    g.add_edge(2, 3, 1.1)
+    g.add_edge(3, 4, 2.1)
+    g.add_edge(4, 2, .5)
+    g_algo = GraphAlgo(g)
+    print(g_algo.centerPoint())
+    print(g_algo.TSP([1, 2, 4]))
+    g_algo.plot_graph()
+    
+```
+OUTPUT:
+
+(-1, inf)
+([1, 2, 3, 4], 4.5)
+
+```
+```
+THE GRAPH:
+(By the implementation of the function for drawing the graph, the location of the vertices at the graph will be run randomly at runtime. So each run looks like a different graph (only in terms of the location).
+
+For example: 
+
+![image](https://user-images.githubusercontent.com/92858287/147478708-dbc68073-c1a3-48df-bdfb-3dcd16ceac7c.png)
+
+
+```
+
+
+
+```
 
 
   
