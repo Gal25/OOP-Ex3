@@ -54,7 +54,7 @@ That is, all the vertices in the graph are seen under a data structure of a dict
 
 
 
-### __More private functions:__
+### __`More private functions:`__
 **_getNode(int):_** Method that get the node ID in the dictionary of nodes.
 
 
@@ -78,7 +78,7 @@ In the class can find the functions and their implementation:
 | plot_graph() | Plots the graph. | None|
 
   
-__More private functions:__
+__`More private functions:`__
   
 **_`algorithm_of_Dijkstra:`_** The function is a helper function for the implementation of the TSP algorithm.\
 The function receive a Node, represent the source node. Based on the Dijkstra's algorithm.\
@@ -88,7 +88,7 @@ _Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges._
 
 
 
-## __`More Classes:`__
+## __More Classes:__
 **_main.py:_**  This is a class given in advance by the team, assists in checking the algorithms and coordinating the results.\
 
   
@@ -134,7 +134,8 @@ OUTPUT:
 ```
 ```
 THE GRAPH:
-(By the implementation of the function for drawing the graph, the location of the vertices at the graph will be run randomly at runtime. So each run looks like a different graph (only in terms of the location).
+(By the implementation of the function for drawing the graph, the location of the vertices at the graph will be run randomly at runtime.\
+So each run looks like a different graph (only in terms of the location).
 
 For example: 
 
