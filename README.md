@@ -88,7 +88,7 @@ _Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges._
 
 
 
-## __More Classes:__
+## __`More Classes:`__
 **_main.py:_**  This is a class given in advance by the team, assists in checking the algorithms and coordinating the results.\
 
   
@@ -146,10 +146,11 @@ For example:
 
   
   
- ```
- External Information:
+ 
+ 
+## External Information:
   
   * In project can find the all tests for all function in this project.
   * More information about Dijkstra's Algorithm: *https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm* 
-```
+
   
