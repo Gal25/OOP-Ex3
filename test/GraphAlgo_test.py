@@ -63,7 +63,7 @@ class GraphAlgo_test(TestCase):
         g.add_edge(1, 2, 5)
         g.add_edge(2, 3, 1.1)
         gAlgo0 = GraphAlgo(g)
-        self.assertEqual((-1, float('inf')), gAlgo0.centerPoint())
+        self.assertEqual((None, float('inf')), gAlgo0.centerPoint())
 
 
         gAlgo1 = GraphAlgo()
