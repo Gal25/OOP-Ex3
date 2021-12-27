@@ -231,7 +231,7 @@ class GraphAlgo(GraphAlgoInterface):
         for i in range(self.graph.sizeNodes):
             temp = self.findTheLongestPath(i)
             if temp == float('inf'):
-                return -1 , float('inf')
+                return None, float('inf')
             if temp < center_path:
                 center_path = temp
                 center = self.graph.get_all_v()[i]
