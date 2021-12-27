@@ -90,7 +90,7 @@ _Complexity: (O(V+E)), |V|=number of nodes, |E|=number of edges._\
 
 
 ## __More Classes:__
-**_main.py:_**  This is a class given in advance by the team, assists in checking the algorithms and coordinating the results.\
+**_main.py:_**  This is a class given in advance by the team, assists in checking the algorithms and coordinating the results.
 
   
   
@@ -99,7 +99,7 @@ The steps:
 * Open a new project.
 * Copy the all files of code from the `CODE` button.
 * Open a main class.
-* Run a code that have the use of the function of a simple grapg.\
+* Run a code that have the use of the function of a simple graph.\
 __For example:__
 
 ```
